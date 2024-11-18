@@ -5,14 +5,14 @@
     <title>Создание заявки</title>
 </head>
 <body>
-     <form action="http://127.0.0.1:8000/" method="post">
+     <form action="http://localhost:8000/orders" method="post">
          <input required placeholder="number" type="number" name="number" />
          <input required placeholder="startDate" type="date" name="startDate" />
          <input required placeholder="device" type="text" name="device" />
          <input required placeholder="problemType" type="text" name="problemType" />
          <input required placeholder="description" type="text" name="description" />
          <input required placeholder="client" type="text" name="client" />
-         <select>
+         <select name="status">
              <option>в ожидании</option>
              <option>в работе</option>
              <option>выполнено</option>

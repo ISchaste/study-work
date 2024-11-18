@@ -10,9 +10,9 @@ class Order(BaseModel):
     number : int
     startDate: datetime.date
     device : str
-    problemType: str
-    description: str
-    client: str
+    problemType : str
+    description : str
+    client : str
     status : str
 
 repo = [
@@ -33,4 +33,4 @@ def get_orders():
 
 @app.post("/orders")
 def create_order(dto : Annotated[Order, Form()]):
-    repo.appent(dto)
+    repo.append(dto)
