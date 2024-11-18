@@ -1,10 +1,8 @@
+import datetime
 from fastapi import FastAPI, Form
 from pydantic import BaseModel
 from typing import Annotated
-import datetime
 
-
-app = FastAPI()
 
 class Order(BaseModel):
     number : int
@@ -26,6 +24,8 @@ repo = [
         status = "в ожидании"
     )
 ]
+
+app = FastAPI()
 
 @app.get("/orders")
 def get_orders():
