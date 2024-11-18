@@ -13,7 +13,18 @@ class Order(BaseModel):
     client: str
     status : str
 
+repo = [
+    Order(
+        number = 1,
+        startDate = "2000-12-01",
+        device = "123",
+        problemType = "123",
+        description = "123",
+        client = "123",
+        status = "в ожидании"
+    )
+]
 
-@app.get("/")
-def read_root():
-    return "Hello"
+@app.get("/orders")
+def get_orders():
+    return repo
