@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Список заявок</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Номер заявки</th>
+            <th>Дата добавления</th>
+            <th>Оборудование, которое требует ремонта</th>
+            <th>Тип неисправности</th>
+            <th>Описание проблемы</th>
+            <th>Клиент, который подал заявку</th>
+            <th>Статус заявки (в ожидании, в работе, выполнено)</th>
+            <th>Мастер</th>
+        </tr>
+    </table>
+    <script>
+        let table = document.querySelector("table");
+
+        GetOrders();
+
+        async function GetOrders() {
+            let orders = await fetch("http://127.0.0.1:8000/orders").then(data => data.json());
+            console.log(orders)
+        }
+    </script>
+</body>
+</html>
