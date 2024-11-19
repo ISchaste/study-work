@@ -29,13 +29,33 @@ repo = [
         description = "123",
         client = "123",
         status = "в ожидании"
+    ),
+    Order(
+        number = 2,
+        startDate = "2000-12-01",
+        device = "123",
+        problemType = "123",
+        description = "123",
+        client = "123",
+        status = "в ожидании"
+    ),
+    Order(
+        number = 3,
+        startDate = "2000-12-01",
+        device = "123",
+        problemType = "123",
+        description = "123",
+        client = "123",
+        status = "в ожидании"
     )
 ]
 
 app = FastAPI()
 
 @app.get("/orders")
-def get_orders():
+def get_orders(param = None):
+    if(param):
+        return [o for o in repo if o.number == int(param)]
     return repo
 
 @app.post("/orders")
