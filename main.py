@@ -1,6 +1,7 @@
 import datetime
 from fastapi import FastAPI, Form
 from pydantic import BaseModel
+from typing import Optional, Annotated
 
 
 class Order(BaseModel):
