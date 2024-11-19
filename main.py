@@ -2,6 +2,7 @@ import datetime
 from fastapi import FastAPI, Form
 from pydantic import BaseModel
 from typing import Optional, Annotated
+from fastapi.middleware.cors import CORSMiddleware
 
 
 class Order(BaseModel):
@@ -51,6 +52,13 @@ repo = [
 ]
 
 app = FastAPI()
+
+app.add_middleware(
+  CORSMiddleware,
+  allow_origins = ["*"],
+  allow_methods = ["*"],
+  allow_headers = ["*"]
+)
 
 msg = ""
 
