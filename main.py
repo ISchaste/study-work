@@ -52,11 +52,14 @@ repo = [
 
 app = FastAPI()
 
+msg = ""
+
 @app.get("/orders")
 def get_orders(param = None):
+    global msg
     if(param):
-        return [o for o in repo if o.number == int(param)]
-    return repo
+        return {"repo": [o for o in repo if o.number == int(param)], "msg": msg}
+    return {"repo": repo, "msg": msg}
 
 @app.post("/orders")
 def create_order(dto : Annotated[Order, Form()]):
@@ -64,10 +67,12 @@ def create_order(dto : Annotated[Order, Form()]):
 
 @app.post("/upd")
 def upd_order(dto : Annotated[UPDOrder, Form()]):
+    global msg
     for o in repo:
         if o.number == dto.number:
             if dto.status != o.status and dto.status != "":
                 o.status = dto.status
+                msg += "Статус заявки №{o.number} изменен"
             if dto.description != "":
                 o.description = dto.description
             if dto.master != "":
