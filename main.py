@@ -65,9 +65,11 @@ msg = ""
 @app.get("/orders")
 def get_orders(param = None):
     global msg
+    buffer = msg
+    msg=""
     if(param):
-        return {"repo": [o for o in repo if o.number == int(param)], "msg": msg}
-    return {"repo": repo, "msg": msg}
+        return {"repo": [o for o in repo if o.number == int(param)], "msg": buffer}
+    return {"repo": repo, "msg": buffer}
 
 @app.post("/orders")
 def create_order(dto : Annotated[Order, Form()]):
@@ -80,7 +82,7 @@ def upd_order(dto : Annotated[UPDOrder, Form()]):
         if o.number == dto.number:
             if dto.status != o.status and dto.status != "":
                 o.status = dto.status
-                msg += f"Статус заявки №{o.number} изменен"
+                msg += f"Статус заявки №{o.number} изменен\n"
             if dto.description != "":
                 o.description = dto.description
             if dto.master != "":
