@@ -40,3 +40,16 @@ def get_orders():
 @app.post("/orders")
 def create_order(dto : Annotated[Order, Form()]):
     repo.append(dto)
+
+@app.post("/upd")
+def upd_order(dto : Annotated[UPDOrder, Form()]):
+    for o in repo:
+        if o.number == dto.number:
+            if dto.status != o.status and dto.status != "":
+                o.status = dto.status
+            if dto.description != "":
+                o.description = dto.description
+            if dto.master != "":
+                o.master = dto.master
+                return o
+    return "Не найдено"
