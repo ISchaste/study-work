@@ -1,7 +1,6 @@
 import datetime
 from fastapi import FastAPI, Form
 from pydantic import BaseModel
-from typing import Annotated
 
 
 class Order(BaseModel):
@@ -12,6 +11,13 @@ class Order(BaseModel):
     description : str
     client : str
     status : str
+    master : Optional[str] = "Не назначен"
+
+class UPDOrder(BaseModel):
+    number: int
+    status: Optional[str] = ""
+    description: Optional[str] = ""
+    master: Optional[str] = ""
 
 repo = [
     Order(
