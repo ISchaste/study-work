@@ -80,7 +80,7 @@ def upd_order(dto : Annotated[UPDOrder, Form()]):
         if o.number == dto.number:
             if dto.status != o.status and dto.status != "":
                 o.status = dto.status
-                msg += "Статус заявки №{o.number} изменен"
+                msg += f"Статус заявки №{o.number} изменен"
             if dto.description != "":
                 o.description = dto.description
             if dto.master != "":
