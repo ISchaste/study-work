@@ -22,9 +22,30 @@
         GetOrders();
 
         async function GetOrders() {
-            let orders = await fetch("http://127.0.0.1:8000/orders").then(data => data.json());
-            console.log(orders)
+            let response = await fetch("http://127.0.0.1:8000/orders").then(data => data.json());
+
+            if(response.msg)
+                alert(response.msg);
+
+            response.repo.forEach(o => {
+                let tr = document.createElement("tr");
+
+                tr.innerHTML = `
+                    <td>${o.number}</td>
+                    <td>${o.startDate}</td>
+                    <td>${o.device}</td>
+                    <td>${o.problemType}</td>
+                    <td>${o.description}</td>
+                    <td>${o.client}</td>
+                    <td>${o.status}</td>
+                    <td>${o.master}</td>`;
+
+                table.append(tr);
+            });
         }
     </script>
+    <style>
+        th, td{border: 1px solid black;}
+    </style>
 </body>
 </html>
